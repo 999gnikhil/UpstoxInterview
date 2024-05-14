@@ -148,15 +148,20 @@ function App(): React.JSX.Element {
                 </Animated.View>
             </TouchableOpacity>
             {
-                expand ?
-                    <View style={{flex: 1,width: '100%', justifyContent: 'center', alignItems: 'center',}}>
-                        {renderDetailRow("Current Value:", getCurrentValue().toFixed(2))}
-                        {renderDetailRow("Total Investment:", getInvestmentValue().toFixed(2))}
-                        {renderDetailRow("Today's Profit & Loss:", getTodaysProfitAndLoss().toFixed(2), true)}
-                        {renderProfitAndLoss()}
+                stocksList.length > 0 &&
+                    <View>
+                        {
+                            expand ?
+                                <View style={{flex: 1,width: '100%', justifyContent: 'center', alignItems: 'center',}}>
+                                    {renderDetailRow("Current Value:", getCurrentValue().toFixed(2))}
+                                    {renderDetailRow("Total Investment:", getInvestmentValue().toFixed(2))}
+                                    {renderDetailRow("Today's Profit & Loss:", getTodaysProfitAndLoss().toFixed(2), true)}
+                                    {renderProfitAndLoss()}
+                                </View>
+                                :
+                                <View>{renderProfitAndLoss()}</View>
+                        }
                     </View>
-                     :
-                    <View{renderProfitAndLoss()}/>
             }
         </View>
     </SafeAreaView>
